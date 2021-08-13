@@ -14,14 +14,15 @@ if __name__ == '__main__':
             humidity = line[0:5]
             temperature = line[6:11]
             lightIntensity = line[12:15]
-            
+            soilWater = line[16:18]
             print(line)
             print(temperature)
             print(humidity)
             print(lightIntensity)
+            print(soilWater)
             
                      
-            params = urllib.urlencode({'field1': temperature, 'field2' : humidity, 'field3' : lightIntensity, 'key':thingSpeakWriteKey }) 
+            params = urllib.urlencode({'field1': temperature, 'field2' : humidity, 'field3' : lightIntensity, 'field4' : soilWater, 'key':thingSpeakWriteKey }) 
             headers = {"Content-typZZe": "application/x-www-form-urlencoded","Accept": "text/plain"}
             conn = httplib.HTTPConnection("api.thingspeak.com:80")
             try:
