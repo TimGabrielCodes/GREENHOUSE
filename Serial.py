@@ -3,6 +3,7 @@
 import serial
 import urllib
 import httplib
+import time
 
 if __name__ == '__main__':
     thingSpeakWriteKey ="VB7HT14R9VZ9HAX8"
@@ -14,7 +15,7 @@ if __name__ == '__main__':
             humidity = line[0:5]
             temperature = line[6:11]
             lightIntensity = line[12:15]
-            soilWater = line[16:18]
+            soilWater = line[16:19]
             print(line)
             print(temperature)
             print(humidity)
@@ -34,4 +35,5 @@ if __name__ == '__main__':
                 conn.close()
             except:
                 print ("connection failed")
+        time.sleep(1)
             
