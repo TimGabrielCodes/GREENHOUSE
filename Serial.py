@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.7.3
 
 import serial
 import urllib
-import httplib
+import http.client as httplib
 import time
 
 if __name__ == '__main__':
@@ -23,7 +23,7 @@ if __name__ == '__main__':
             print(soilWater)
             
                      
-            params = urllib.urlencode({'field1': temperature, 'field2' : humidity, 'field3' : lightIntensity, 'field4' : soilWater, 'key':thingSpeakWriteKey }) 
+            params = urllib.parse.urlencode({'field1': temperature, 'field2' : humidity, 'field3' : lightIntensity, 'field4' : soilWater, 'key':thingSpeakWriteKey }) 
             headers = {"Content-typZZe": "application/x-www-form-urlencoded","Accept": "text/plain"}
             conn = httplib.HTTPConnection("api.thingspeak.com:80")
             try:
@@ -35,5 +35,5 @@ if __name__ == '__main__':
                 conn.close()
             except:
                 print ("connection failed")
-        time.sleep(1)
+      
             
