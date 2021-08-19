@@ -1,12 +1,16 @@
 #!/usr/bin/env python3.7.3
 
+from flask import Flask
 import serial
 import urllib
 import http.client as httplib
-import time
+from flask import Flask, app, render_template, jsonify
+ 
+thingspeakwritekey ="GINQ9FW2MPP1XPLS"
+app = Flask(__name__)
 
-if __name__ == '__main__':
-    thingSpeakWriteKey ="VB7HT14R9VZ9HAX8"
+@app.route("/main")
+def main():
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.flush()
     while True:
@@ -14,20 +18,21 @@ if __name__ == '__main__':
             line = ser.readline().decode('utf-8').rstrip()
             humidity = line[0:5]
             temperature = line[6:11]
-            lightIntensity = line[12:15]
-            soilWater = line[16:19]
+            lightintensity = line[12:15]
+            soilwater = line[16:19]
             print(line)
             print(temperature)
             print(humidity)
-            print(lightIntensity)
-            print(soilWater)
-            
+            print(lightintensity)
+            print(soilwater)
+            print(temperature)
+           
                      
-            params = urllib.parse.urlencode({'field1': temperature, 'field2' : humidity, 'field3' : lightIntensity, 'field4' : soilWater, 'key':thingSpeakWriteKey }) 
-            headers = {"Content-typZZe": "application/x-www-form-urlencoded","Accept": "text/plain"}
+            params = urllib.parse.urlencode({'field1': temperature, 'field2' : humidity, 'field3' : lightintensity, 'field4' : soilwater, 'key':thingspeakwritekey }) 
+            headers = {"content-typzze": "application/x-www-form-urlencoded","accept": "text/plain"}
             conn = httplib.HTTPConnection("api.thingspeak.com:80")
             try:
-                conn.request("POST", "/update", params, headers)
+                conn.request("post", "/update", params, headers)
                 response = conn.getresponse()
                
                 print (response.status, response.reason)
@@ -35,5 +40,9 @@ if __name__ == '__main__':
                 conn.close()
             except:
                 print ("connection failed")
-      
-            
+                
+                
+if __name__ == '__main__':
+    app.run()
+    
+    

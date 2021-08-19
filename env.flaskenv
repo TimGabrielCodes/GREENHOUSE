@@ -1,0 +1,2 @@
+FLASK_APP=GreenHouse.py
+FLASK_ENV=development
