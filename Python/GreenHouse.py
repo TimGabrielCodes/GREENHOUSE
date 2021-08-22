@@ -34,7 +34,7 @@ def update():
         # print(lightintensity)
         # print(soilwater)
         # templateData = {temperature}
-        templateData = {'time' : now.stssrftime('%m-%d-%y %H:%M:%S'),'Temperature' : temperature, 'Humidity' : humidity , 'Light Intensity' : lightintensity, 'Soil Water Level': soilwater, 'Status' : 200}
+        templateData = {'time' : now.strftime('%m-%d-%y %H:%M:%S'),'Temperature' : temperature, 'Humidity' : humidity , 'Light Intensity' : lightintensity, 'Soil Water Level': soilwater, 'Status' : 200}
         return jsonify(templateData)
         
     else: 
