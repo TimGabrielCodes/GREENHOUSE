@@ -17,8 +17,11 @@
      
         chartIt();     
         async function chartIt(){
-        await getData();
+        for(var i = 0; i< 11; i++)
+        {await getData();}
+            
         const ctx = document.getElementById('chart').getContext('2d');
+
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -40,14 +43,17 @@
         });   
     }        
         async function getData(){
+
         const response = await fetch ('http://127.0.0.1:5000/update');
+            
         const data =  await response.json();
-        console.log(data["Temperature"]);
-        yTemps.push(data["Temperature"]);
-        var d = new Date().toLocaleString;
-        const date = d.getDate;
-        console.log(data["Time"]);
-        xlabels.push(data["Time"]);  
+         console.log(data["Temperature"]);
+         yTemps.push(data["Temperature"]);
+
+         var d = new Date().toLocaleString;
+         const date = d.getDate;
+            console.log(data["Time"]);
+         xlabels.push(data["Time"]);  
 
         }
    </script>
