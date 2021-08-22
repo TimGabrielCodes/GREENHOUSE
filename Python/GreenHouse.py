@@ -8,7 +8,7 @@ app.debug = True
 ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 ser.flush()
 
-@app.route("/index")
+@app.route("/")
 def index():
    return render_template("index.html")
 
