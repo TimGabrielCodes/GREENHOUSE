@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Tim's Greenhouse</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    
 
 </head>
 <body>
@@ -14,11 +15,16 @@
     <script>
         const xlabels =[]; 
         const yTemps =[];
-     
-        chartIt();     
+        chartIt();
+
+   
         async function chartIt(){
-        await getData();
+           // await setInterval(getData,1000);
+           await getData();
+          // setInterval(getData, 1000);
         const ctx = document.getElementById('chart').getContext('2d');
+
+
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -37,19 +43,33 @@
                     borderWidth: 1
                 }]
             }
-        });   
-    }        
+        });
+    }
+    
+    
+    // getData();
+        
         async function getData(){
-        const response = await fetch ('http://127.0.0.1:5000/update');
-        const data =  await response.json();
-        console.log(data["Temperature"]);
-        yTemps.push(data["Temperature"]);
-        var d = new Date().toLocaleString;
-        const date = d.getDate;
-        console.log(data["Time"]);
-        xlabels.push(data["Time"]);  
+
+            const response = await fetch ('http://127.0.0.1:5000/update');
+            const data = await response.json();
+
+
+         console.log(data["Temperature"]);
+         yTemps.push(data["Temperature"]);
+
+         var d = new Date().toLocaleString;
+         const date = d.getDate;
+            console.log(data["Time"]);
+         xlabels.push(data["Time"]);
+
+    
 
         }
+  
+
    </script>
+
+
 </body>
 </html>
