@@ -46,8 +46,8 @@ def camHandler():
             print("Capture")
             rqs=RQS_0
             timeStamp = time.strftime("%Y%m%d-%H%M%S")
-            jpgFile='img_'+timeStamp+'.jpg'
-            camera.resolution = (2592, 1944)    #set photo size
+            jpgFile='/home/pi/Pictures/leafPictures/leaf_'+timeStamp+'.jpg'
+            camera.resolution = (400, 400)    #set photo size
             camera.capture(jpgFile)
             camera.resolution = (400, 300)      #resume preview size
             labelCapVal.set(jpgFile)
@@ -87,7 +87,7 @@ def capture():
     labelCapVal.set("capturing")
 
 tkTop = Tkinter.Tk()
-tkTop.wm_title("Raspberry Pi Camera")
+tkTop.wm_title("Greenhouse Camera")
 tkTop.geometry('800x500')
 
 previewWin = Tkinter.Toplevel(tkTop)
@@ -154,7 +154,7 @@ scaleExpCompensation = Tkinter.Scale(
 scaleExpCompensation.set(0)
 scaleExpCompensation.pack(anchor=Tkinter.CENTER)
 
-print("start")
+print("start camera")
 startCamHandler()
 
 Tkinter.mainloop()
