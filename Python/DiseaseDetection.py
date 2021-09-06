@@ -50,6 +50,7 @@ def GetFile():
         return sys.argv[1]
     else:
         return filedialog.askopenfilename(title="Select Image")
+        
 
 
 def DisplayDiseasePercentage(Disease):
@@ -62,7 +63,7 @@ def DisplayDiseasePercentage(Disease):
             if Disease[i, j] < S.get():
                 Count += 1
     Percent = (Count / Res) * 100
-    DiseasePercent.set("Percentage Disease: " + str(round(Percent, 2)) + "%")
+    DiseasePercent.set("Percentage of deformity: " + str(round(Percent, 2)) + "%")
 
 
 Alpha = None
